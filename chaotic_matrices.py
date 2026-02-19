@@ -3,32 +3,28 @@ import math
 import secrets
 import matplotlib.pyplot as plt
 
-# =====================================================
+
 # 2D-HSM CONSTANTS (as used in the paper)
-# =====================================================
 OMEGA = 10.0
 B2 = 1.57
 
 
-# =====================================================
+
 # Real mod function (paper definition)
-# =====================================================
 def real_mod(x, m):
     return x - math.floor(x / m) * m
 
 
-# =====================================================
+
 # Split 256-bit key into 8 × 32-bit blocks
-# =====================================================
 def split_key_256(key_hex):
     key_hex = key_hex.replace("0x", "")
     assert len(key_hex) == 64, "Key must be 256-bit (64 hex characters)"
     return [int(key_hex[i:i+8], 16) for i in range(0, 64, 8)]
 
 
-# =====================================================
+
 # Algorithm 1 – Key Initialization (Paper-Faithful)
-# =====================================================
 def initialize_from_key(key_hex):
 
     k = split_key_256(key_hex)
@@ -68,18 +64,15 @@ def initialize_from_key(key_hex):
     return x10, y10, x20, y20, b11, b21
 
 
-# =====================================================
 # 2D-HSM Iteration
-# =====================================================
 def iterate_2dhsm(x, y, b1):
     x_next = 0.5 * (1 - math.sin(1 - OMEGA * b1 * x * x - OMEGA * B2 * y))
     y_next = math.sin(OMEGA * B2 * x)
     return x_next % 1.0, y_next % 1.0
 
 
-# =====================================================
+
 # Generate Chaotic Matrix (256×256)
-# =====================================================
 def generate_S_matrix(x0, y0, b1, size=256, burn_in=1000):
 
     x, y = x0, y0
@@ -97,9 +90,8 @@ def generate_S_matrix(x0, y0, b1, size=256, burn_in=1000):
     return S
 
 
-# =====================================================
+
 # MAIN EXECUTION
-# =====================================================
 if __name__ == "__main__":
 
     # Generate random 256-bit key
@@ -154,3 +146,4 @@ print(S2[:2, :2])
 
 
    
+
