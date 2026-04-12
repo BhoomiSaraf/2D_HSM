@@ -1,4 +1,4 @@
-# Secure Image Encryption using Dual 2D-HSM Chaotic Maps
+# Secure Image Encryption using Chaotic Maps
 https://1drv.ms/p/c/b053cb5bd24bad08/IQByTG5Qta9vR4UfSzppJsY2AZDtKyiFfdXtixfobr4NxdY?e=LcdMlx
 
 ## Overview
